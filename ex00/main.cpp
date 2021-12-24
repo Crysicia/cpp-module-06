@@ -22,12 +22,11 @@ bool isCorrectlyFormatted(const char c, const size_t index, const size_t string_
 
 	if (charset.find(c) == std::string::npos) { return false; }
 	if (index == 0 && (!std::isdigit(c) && c != '-')) { return false; }
-	if (index == 1 && (!std::isdigit(c) && c != '.')) { return false; }
+	if (index == 1 && (!std::isdigit(c) && c != '.' && c != 'f')) { return false; }
 	if (c == '-' && (index != 0 || index == string_length - 1)) { return false; }
 	if (c == 'f' && (index != string_length - 1 || index == 0)) { return false; }
 	return true;
 }
-
 
 int getType(const std::string &input) {
 	size_t dot_count = 0;
@@ -45,9 +44,9 @@ int getType(const std::string &input) {
 		if (input[i] == '.') { dot_count++; }
 	}
 	if (last_char != 'f' && dot_count == 0) { return F_INT; }
-	if (dot_count != 1) { return F_UNKNOWN; }
 	if (!std::isdigit(input[input.rfind('.') + 1])) { return F_UNKNOWN; }
-	if (last_char == 'f') { return F_FLOAT; }
+	if (last_char == 'f' && dot_count <= 1) { return F_FLOAT; }
+	if (dot_count != 1) { return F_UNKNOWN; }
 	if (last_char != 'f') { return F_DOUBLE; }
 	return F_UNKNOWN;
 }
