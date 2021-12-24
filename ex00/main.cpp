@@ -12,6 +12,11 @@ class Convert {
 #define F_DOUBLE 3
 #define F_CHAR 4
 
+bool isInArray(const std::string *array, const std::string& to_find, const size_t array_size) {
+	for (size_t i = 0; i < array_size; i++) { if (array[i] == to_find) { return true; } }
+	return false;
+}
+
 bool isCorrectlyFormatted(const char c, const size_t index, const size_t string_length) {
 	static const std::string charset = "0123456789-.f";
 
@@ -28,9 +33,13 @@ int getType(const std::string &input) {
 	size_t dot_count = 0;
 	size_t string_length = input.length();
 	const char last_char = input[string_length - 1];
-
+	static const std::string specifics_float[3] = { "-inff", "+inff", "nanf" };
+	static const std::string specifics_double[3] = { "-inf", "+inf", "nan" };
 
 	if (string_length == 1 && std::isprint(last_char)) { return F_CHAR; }
+	if (isInArray(specifics_double, input, 3)) { return F_DOUBLE; }
+	if (isInArray(specifics_float, input, 3)) { return F_FLOAT; }
+
 	for (size_t i = 0; i < string_length; i++) {
 		if (!isCorrectlyFormatted(input[i], i, string_length)) { return F_UNKNOWN; }
 		if (input[i] == '.') { dot_count++; }
