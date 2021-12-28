@@ -3,7 +3,9 @@ CXX		= c++
 NAME	= convert
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -f
-SRCS	= main.cpp
+SRCS	= main.cpp \
+		  Convert.cpp
+# 		  Idenftifer.cpp
 
 all: $(NAME)
 
