@@ -2,6 +2,7 @@
 # define CONVERT_HPP
 #include <string>
 #include <iostream>
+#include <cmath>
 
 class Convert {
 public:
@@ -15,8 +16,16 @@ public:
 	float toFloat(void);
 	double toDouble(void);
 
+	class CannotConvertException : public std::exception {
+		const char* what(void) const throw();
+	};
+
+	class NotPrintableException : public std::exception {
+		const char* what(void) const throw();
+	};
+
 private:
-	std::string m_input;
+	double m_input;
 };
 
 #endif

@@ -5,7 +5,6 @@ OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -f
 SRCS	= main.cpp \
 		  Convert.cpp
-# 		  Idenftifer.cpp
 
 all: $(NAME)
 

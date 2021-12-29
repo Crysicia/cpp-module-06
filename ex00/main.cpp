@@ -1,23 +1,40 @@
-#include <cctype>
-#include <cstdlib>
 #include <iostream>
-#include "Identifier.hpp"
-
-class Convert {
-};
+#include "Convert.hpp"
 
 int main(int argc, char *argv[]) {
-	int argument;
-	std::string arg;
+	Convert *converter;
 
-	if (argc != 2) { return 1; }
-	Identifier test(argv[1]);
-
-	std::cout << "get type: " << test.getType(argv[1]) << std::endl;
-	arg = argv[1];
-	argument = std::atoi(argv[1]);
-	if (std::isprint(argument)) {
-		std::cout << "Char: " << static_cast<char>(argument) << std::endl;
+	if (argc != 2) {
+		std::cout << "Wrong number of arguments." << std::endl;
+		return 1;
 	}
+
+	try { converter = new Convert(argv[1]); }
+	catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+		return 1;
+	}
+
+	std::cout << "char: ";
+	try { std::cout << converter->toChar() << std::endl; }
+	catch (std::exception& e) { std::cout << e.what() << std::endl; }
+
+	std::cout << "int: ";
+	try { std::cout << converter->toInt() << std::endl; }
+	catch (std::exception& e) { std::cout << e.what() << std::endl; }
+
+	std::cout << "float: ";
+	try { std::cout << converter->toFloat();
+		if (!fmod(converter->toFloat(), 1)) { std::cout << ".0"; }
+		std::cout << "f" << std::endl;
+	} catch (std::exception& e) { std::cout << e.what() << std::endl; }
+
+
+	std::cout << "double: ";
+	try { std::cout << converter->toDouble();
+		if (!fmod(converter->toDouble(), 1)) { std::cout << ".0"; }
+		std::cout << std::endl;
+	} catch (std::exception& e) { std::cout << e.what() << std::endl; }
+
 	return 0;
 }
