@@ -12,6 +12,7 @@ int main(int argc, char *argv[]) {
 	try { converter = new Convert(argv[1]); }
 	catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
+		delete converter;
 		return 1;
 	}
 
@@ -36,5 +37,6 @@ int main(int argc, char *argv[]) {
 		std::cout << std::endl;
 	} catch (std::exception& e) { std::cout << e.what() << std::endl; }
 
+	delete converter;
 	return 0;
 }
