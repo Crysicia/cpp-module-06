@@ -22,8 +22,8 @@ int main(void) {
 	std::cout << "Serialized value: " << serialized << std::endl;
 	std::cout << "Serialized deserialized value: " << serialize(deserialized) << std::endl;
 
-	std::cout << "Original magic number: " << deserialized->magic_number << std::endl;
-	std::cout << "Original magic string: " << deserialized->magic_string << std::endl;
+	std::cout << "Original magic number: " << data_ptr->magic_number << std::endl;
+	std::cout << "Original magic string: " << data_ptr->magic_string << std::endl;
 
 	std::cout << "Deserialized magic number: " << deserialized->magic_number << std::endl;
 	std::cout << "Deserialized magic string: " << deserialized->magic_string << std::endl;
