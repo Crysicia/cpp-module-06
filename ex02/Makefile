@@ -1,6 +1,6 @@
 CXXFLAGS	= -std=c++98 -pedantic -Wall -Werror -Wextra
 CXX		= c++
-NAME	= serialize
+NAME	= base
 OBJS	= $(SRCS:.cpp=.o)
 RM		= rm -f
 SRCS	= main.cpp
