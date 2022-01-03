@@ -1,4 +1,4 @@
-CFLAGS	= -std=c++98 -pedantic -Wall -Werror -Wextra
+CXXFLAGS= -std=c++98 -pedantic -Wall -Werror -Wextra
 CXX		= c++
 NAME	= convert
 OBJS	= $(SRCS:.cpp=.o)
@@ -9,10 +9,10 @@ SRCS	= main.cpp \
 all: $(NAME)
 
 %.o: %.cpp
-	$(CXX) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
