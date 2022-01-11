@@ -3,6 +3,7 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+
 Base::~Base() {}
 
 Base* generate(void) {
@@ -58,15 +59,19 @@ void identify(Base& p) {
 int main(void) {
 	std::srand(std::time(NULL));
 
-	std::cout << "---- Initialize random base class ----" << std::endl;
-	Base* random_class = generate();
+	for (int i = 0; i < 5; i++) {
+		std::cout << "---- Initialize random base class ----" << std::endl;
+		Base* random_class = generate();
 
-	std::cout << "---- Identify using pointer ----" << std::endl;
-	identify(random_class);
+		std::cout << "---- Identify using pointer ----" << std::endl;
+		identify(random_class);
 
-	std::cout << "---- Identify using reference ----" << std::endl;
-	identify(*random_class);
+		std::cout << "---- Identify using reference ----" << std::endl;
+		identify(*random_class);
 
-	delete random_class;
+		delete random_class;
+		std::cout << std::endl << std::endl;
+	}
+
 	return 0;
 }
