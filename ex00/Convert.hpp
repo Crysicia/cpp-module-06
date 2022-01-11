@@ -6,6 +6,7 @@
 
 class Convert {
 public:
+	Convert();
 	Convert(const std::string& input);
 	Convert(const Convert& copy);
 	~Convert();

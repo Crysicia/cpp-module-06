@@ -1,6 +1,14 @@
 #include "Convert.hpp"
 
-Convert::Convert(const std::string& input) : m_input(std::stod(input)) {}
+Convert::Convert() : m_input(0.0) {}
+Convert::Convert(const std::string& input) {
+	if (input.length() == 1 && std::isprint(input[0]) && !std::isdigit(input[0])) { 
+		m_input = static_cast<double>(input[0]);
+		return ;
+	}
+	m_input = std::stod(input);
+}
+
 Convert::Convert(const Convert& copy) : m_input(copy.m_input) { *this = copy; }
 Convert::~Convert() {}
 Convert& Convert::operator=(const Convert& rhs) {
