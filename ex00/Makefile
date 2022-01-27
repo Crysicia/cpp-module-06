@@ -3,7 +3,7 @@ CXX		= c++
 NAME	= convert
 OBJS_PATH = objs/
 DEPS_PATH = deps/
-DEPS	= $(patsubst %, $(OBJS_PATH)%, $(SRCS:.cpp=.d))
+DEPS	= $(patsubst %, $(DEPS_PATH)%, $(SRCS:.cpp=.d))
 OBJS	= $(patsubst %, $(OBJS_PATH)%, $(SRCS:.cpp=.o))
 RM		= rm -f
 SRCS	= main.cpp \
