@@ -1,4 +1,4 @@
-CXXFLAGS= -std=c++98 -pedantic -Wall -Werror -Wextra
+CXXFLAGS= -std=c++98 -pedantic -Wall -Werror -Wextra -g
 CXX		= c++
 NAME	= convert
 OBJS	= $(SRCS:.cpp=.o)

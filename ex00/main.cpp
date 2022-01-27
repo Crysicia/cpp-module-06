@@ -11,8 +11,7 @@ int main(int argc, char *argv[]) {
 
 	try { converter = new Convert(argv[1]); }
 	catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
-		delete converter;
+		std::cout << "Error: " << e.what() << std::endl;
 		return 1;
 	}
 
@@ -25,14 +24,16 @@ int main(int argc, char *argv[]) {
 	catch (std::exception& e) { std::cout << e.what() << std::endl; }
 
 	std::cout << "float: ";
-	try { std::cout << converter->toFloat();
+	try {
+		std::cout << converter->toFloat();
 		if (!fmod(converter->toFloat(), 1)) { std::cout << ".0"; }
 		std::cout << "f" << std::endl;
 	} catch (std::exception& e) { std::cout << e.what() << std::endl; }
 
 
 	std::cout << "double: ";
-	try { std::cout << converter->toDouble();
+	try {
+		std::cout << converter->toDouble();
 		if (!fmod(converter->toDouble(), 1)) { std::cout << ".0"; }
 		std::cout << std::endl;
 	} catch (std::exception& e) { std::cout << e.what() << std::endl; }
