@@ -1,23 +1,30 @@
-CXXFLAGS= -std=c++98 -pedantic -Wall -Werror -Wextra -g
+CXXFLAGS= -std=c++98 -pedantic -Wall -Werror -Wextra
 CXX		= c++
 NAME	= convert
-OBJS	= $(SRCS:.cpp=.o)
+OBJS_PATH = objs/
+DEPS_PATH = deps/
+DEPS	= $(patsubst %, $(OBJS_PATH)%, $(SRCS:.cpp=.d))
+OBJS	= $(patsubst %, $(OBJS_PATH)%, $(SRCS:.cpp=.o))
 RM		= rm -f
 SRCS	= main.cpp \
 		  Convert.cpp
 
 all: $(NAME)
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJS_PATH)%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean $(NAME)
+
+-include $(DEPS)
+
+.PHONY: all clean fclean re
