@@ -25,7 +25,12 @@ public:
 		const char* what(void) const throw();
 	};
 
+	class IncorrectFormatException : public std::exception {
+		const char* what(void) const throw();
+	};
+
 private:
+	bool isCorrectlyFormatted(const std::string& input) const;
 	double m_input;
 };
 
